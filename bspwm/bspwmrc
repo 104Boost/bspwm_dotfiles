@@ -1,0 +1,50 @@
+#! /bin/sh
+sxhkd &
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+xrandr --output DisplayPort-1 --auto --primary --scale 1x1
+xrandr --output DisplayPort-2 --auto --above DisplayPort-1 --rotate inverted --scale 1x1
+bspc monitor DisplayPort-1 -d I II III IV V
+bspc monitor DisplayPort-2 -d VI VII VIII IX X
+#bspc monitor -d I II III IV V VI VII VIII IX X
+bspc config split_ratio 0.52 &
+bspc config borderless_monocle true &
+bspc config single_monocle = true &
+bspc config gapless_monocle true &
+bspc config pointer_motion_interval 5 &
+bspc config border_width 0 &
+bspc config top_padding 2
+bspc config bottom_padding 2
+bspc config left_padding 2
+bspc config right_padding 2
+bspc config normal_border_color "#d3869b"
+bspc config active_border_color "#d3869b"
+bspc config focused_border_color "#fbf1c7"
+bspc config presel_feedback_color "#b8bb26"
+
+
+xsetroot -Bibata-Modern-Ice left_ptr &
+xset s noblank &
+#bspc rule -a Gimp desktop='^8' state=floating follow=on
+#bspc rule -a Chromium desktop='^2'
+#bspc rule -a mplayer2 state=floating
+#bspc rule -a Kupfer.py focus=on
+#bspc rule -a Screenkey manage=off
+
+#AutoStart appliactions
+dunst &
+ulauncher &
+feh --bg-scale /home/bremen/Imágenes/Wallpapers/cabin.png  &
+picom --experimental-backend --config /home/bremen/.config/picom/picom.conf
+#mutter --replace &
+#compfy -fb --backend glx --config ~/.config/compfy/compfy.conf &
+#swww-daemon &
+#polybar Main &
+#polybar Secondary &
+#polybar workspaces &
+#polybar cpu &
+#polybar date &
+#polybar filesystem&
+#polybar memory &
+#polybar now-playing &
+#polybar volume &
